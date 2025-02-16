@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  aspect-ratio: 3/4;
+  max-width: 300px;
+  width: 100%;
+  border: 2px solid hsl(213, 27%, 84%);
+  padding: 2px;
+  border-radius: 8px;
+  position: relative;
+  transition: translate 0.2s ease-out, scale 0.2s ease-out;
+}
+
+.card:hover {
+  translate: 0px -16px;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+.card .text {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  left: 2px;
+  padding: 4px 16px;
+  color: white;
+  background: linear-gradient(to bottom, transparent, hsl(0, 0%, 0%, 0.5));
+}
+
+.card#right-card {
+  rotate: 6deg;
+  & .text {
+    text-align: right;
+  }
+}
+.card#left-card {
+  rotate: -6deg;
+
+  & .text {
+    text-align: left;
+  }
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  color: white;
+  text-transform: uppercase;
+  background-color: hsl(0deg 0 0);
+  font-weight: 700;
+  padding: 8px 16px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out, scale 0.2s ease-out;
+}
+button:active {
+  scale: 0.95;
+}
+
+button:hover {
+  background-color: hsl(0deg 0 15);
+}
+
+.card-container:has(.winner) {
+  z-index: 100;
+  position: relative;
+}
+
+.card.winner {
+  scale: 1.1;
+}
+.card.loser {
+  scale: 0.8;
+  filter: grayscale(100%);
+
+  &#right-card {
+    translate: -30px 0px;
+  }
+  &#left-card {
+    translate: 30px 0px;
+  }
+}
+.card.loser:hover,
+.card.winner:hover {
+  translate: 0px 0px;
+}
+
+.loader {
+  background-color: hsl(0deg 0 100 / 0.5);
+  backdrop-filter: blur(8px);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hidden {
+  display: none;
+}
